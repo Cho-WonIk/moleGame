@@ -8,7 +8,7 @@ const int DisplaySize = 100;		 // 윈도우 사이즈 기본 단위
 const int Width = DisplaySize * 16; // 가로 길이
 const int Height = DisplaySize * 9; // 세로 길이
 
-extern int MouseX, MouseY;
+int MouseX, MouseY;
 
 void MoleGame_Display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -33,7 +33,7 @@ void MoleReshape(int width, int height) {
 
 	glMatrixMode(GL_MODELVIEW);
 
-	glutPostRedisplay();    //플래그 설정했다가 이벤트 루프 마지막에 디스플레이해라.
+	glutPostRedisplay();
 }
 
 int main(int argc, char** argv) {
@@ -46,9 +46,10 @@ int main(int argc, char** argv) {
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
 	glutReshapeFunc(MoleReshape);
 	glutPassiveMotionFunc(PassiveMouseMotion);
+	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
+
 	glutMainLoop();
 	return 0;
 }

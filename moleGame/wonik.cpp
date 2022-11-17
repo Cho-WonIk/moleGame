@@ -3,14 +3,20 @@
 
 void PassiveMouseMotion(int x, int y)
 {
-	std::cout << x << y << std::endl;
 	MouseX = x;
 	MouseY = y;
+
+	glutPostRedisplay();
 }
 
 void hammer()
 {
-	glTranslatef(MouseX / Width, MouseY / Height, 0.0);
+	GLfloat x = (static_cast<GLfloat>(MouseX) / Width);
+	GLfloat y = (static_cast<GLfloat>(MouseY) / Height);
+
+	std::cout << x << "  " << y << std::endl;
+
+	glTranslatef(x, y, 0.0);
 
 	glPushMatrix();//¸ÁÄ¡ Á¦ÀÛÁß
 	glColor3f(1.0, 0.3, 0.3);
@@ -28,6 +34,8 @@ void hammer()
 
 	glTranslatef(0.0, -0.5, 0.0);
 	glutSolidCube(0.2);
+
+	
 	glPopMatrix();
 	
 }
