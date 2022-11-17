@@ -15,7 +15,9 @@ void display() {
 	glFinish();
 }
 
-void tmp(){}
+void tmp(){
+//hello
+}
 
 int main(int argc, char** argv) {
 
