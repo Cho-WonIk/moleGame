@@ -15,6 +15,8 @@ void display() {
 	glFinish();
 }
 
+void tmp(){}
+
 int main(int argc, char** argv) {
 
 	glutInit(&argc, argv); // initilize √ ±‚»≠
