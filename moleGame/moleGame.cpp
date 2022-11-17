@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv); // initilize 초기화
 	glutCreateWindow
 	("OpenGL");
-
+	// 테스트
 	glutDisplayFunc(display); // display이벤트 발생
 	glutMainLoop();
 	return 0;
