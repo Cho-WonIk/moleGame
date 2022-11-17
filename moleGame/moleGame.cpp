@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow
 	("OpenGL");
 	// 테스트
+	//테스트1223
 	glutDisplayFunc(display); // display이벤트 발생
 	glutMainLoop();
 	return 0;
