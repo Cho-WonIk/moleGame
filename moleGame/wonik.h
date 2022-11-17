@@ -7,3 +7,9 @@
 void PassiveMouseMotion(int x, int y);
 
 void hammer();
+
+extern const int DisplaySize;		 // 윈도우 사이즈 기본 단위
+extern const int Width = DisplaySize; // 가로 길이
+extern const int Height = DisplaySize; // 세로 길이
+
+extern int MouseX, MouseY;

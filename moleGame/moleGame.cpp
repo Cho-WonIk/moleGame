@@ -4,10 +4,11 @@
 #include <GL/GLU.h>
 #include "wonik.h"
 
-	const int DisplaySize = 100;		 // 윈도우 사이즈 기본 단위
-	const int Width = DisplaySize * 16; // 가로 길이
-	const int Height = DisplaySize * 9; // 세로 길이
+const int DisplaySize = 100;		 // 윈도우 사이즈 기본 단위
+const int Width = DisplaySize * 16; // 가로 길이
+const int Height = DisplaySize * 9; // 세로 길이
 
+extern int MouseX, MouseY;
 
 void MoleGame_Display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
