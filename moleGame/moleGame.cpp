@@ -14,23 +14,7 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	glPushMatrix();//망치 제작중
-		glColor3f(1.0, 0.3, 0.3);
-
-		glutSolidCube(0.2);
-
-		glTranslatef(0.5, 0.0, 0.0);
-		glutSolidCube(0.2);
-
-		glTranslatef(-1, 0.0, 0.0);
-		glutSolidCube(0.2);
-
-		glTranslatef(0.5, -0.5, 0.0);
-		glutSolidCube(0.2);
-
-		glTranslatef(0.0, -0.5, 0.0);
-		glutSolidCube(0.2);
-	glPopMatrix();
+	hammer();
 
 	glutSwapBuffers();
 }

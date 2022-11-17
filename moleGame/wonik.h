@@ -6,3 +6,4 @@
 
 void PassiveMouseMotion(int x, int y);
 
+void hammer();
