@@ -16,10 +16,19 @@ void MoleGame_Display() {
 
 	glPushMatrix();//망치 제작중
 		glColor3f(1.0, 0.3, 0.3);
+
 		glutSolidCube(0.2);
-		glTranslatef(0.2, 0.0, 0.0);
+
+		glTranslatef(0.5, 0.0, 0.0);
 		glutSolidCube(0.2);
-		glTranslatef(-0.2, 0.0, 0.0);
+
+		glTranslatef(-1, 0.0, 0.0);
+		glutSolidCube(0.2);
+
+		glTranslatef(0.5, -0.5, 0.0);
+		glutSolidCube(0.2);
+
+		glTranslatef(0.0, -0.5, 0.0);
 		glutSolidCube(0.2);
 	glPopMatrix();
 
