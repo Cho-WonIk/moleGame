@@ -22,7 +22,6 @@ void MoleGame_Display() {
 }
 
 void MoleReshape(int width, int height) {
-	float ratio = 1.0 * width / height;
 
 	glViewport(0, 0, width, height);                   //그냥 윈도우 크기대로 뷰포트 해줌
 
