@@ -16,7 +16,7 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	hammer();
+	//hammer(); - 일단 비활성화
 
 	glutSwapBuffers();
 }
