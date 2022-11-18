@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <time.h>
 
 using namespace std;

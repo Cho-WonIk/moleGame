@@ -133,6 +133,7 @@
     <ClCompile Include="wonik.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\random.h" />
     <ClInclude Include="wonik.h" />
   </ItemGroup>
   <ItemGroup>

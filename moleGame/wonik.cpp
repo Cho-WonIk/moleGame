@@ -33,7 +33,7 @@ void hammer()
 void DrawField()
 {
 	glColor3f(1.0, 0.0, 0.0);
-	glRectf(-3.5, 2.0, 3.5, -2.0);
+	glRectf(-3.5, 1.5, -0.5, -1.5);
 	glFlush();
 }
 
