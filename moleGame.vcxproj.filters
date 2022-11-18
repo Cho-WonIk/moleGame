@@ -15,15 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="moleGame.cpp">
+    <ClCompile Include="wonik.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="mouse.cpp">
+    <ClCompile Include="..\moleGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mouse.h">
+    <ClInclude Include="wonik.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\random.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
