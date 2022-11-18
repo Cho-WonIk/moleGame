@@ -2,15 +2,16 @@
 #include <GL/glut.h>
 #include <GL/GL.h>
 #include <GL/GLU.h>
-#include "wonik.h"
+#include "mouse.h"
 
-const int DisplaySize = 100;		 // 윈도우 사이즈 기본 단위
-const int Width = DisplaySize * 16; // 가로 길이
-const int Height = DisplaySize * 9; // 세로 길이
+//화면 크기는 모니터크기의 1/4
+const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
+const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 
 int MouseX, MouseY;
 
 void MoleGame_Display() {
+	glViewport(0, 0, Width, Height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

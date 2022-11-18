@@ -18,12 +18,12 @@
     <ClCompile Include="moleGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="wonik.cpp">
+    <ClCompile Include="mouse.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="wonik.h">
+    <ClInclude Include="mouse.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

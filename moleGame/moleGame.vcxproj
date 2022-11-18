@@ -130,10 +130,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="moleGame.cpp" />
-    <ClCompile Include="wonik.cpp" />
+    <ClCompile Include="mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="wonik.h" />
+    <ClInclude Include="mouse.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="파일 출처.txt" />
