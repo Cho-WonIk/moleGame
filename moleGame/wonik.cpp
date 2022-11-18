@@ -1,5 +1,5 @@
 #pragma once
-#include "mouse.h"
+#include "wonik.h"
 
 void PassiveMouseMotion(int x, int y)
 {
