@@ -5,7 +5,7 @@ void PassiveMouseMotion(int x, int y)
 {
 	MouseX = x;
 	MouseY = y;
-
+	std::cout << x << "  " << y << std::endl;
 	glutPostRedisplay();
 }
 
@@ -29,3 +29,11 @@ void hammer()
 	glPopMatrix();
 	
 }
+
+void DrawField()
+{
+	glColor3f(1.0, 0.0, 0.0);
+	glRectf(-3.5, 2.0, 3.5, -2.0);
+	glFlush();
+}
+

@@ -17,7 +17,7 @@ void MoleGame_Display() {
 	glLoadIdentity();
 
 	//hammer(); - 일단 비활성화
-
+	DrawField();
 	glutSwapBuffers();
 }
 
