@@ -3,6 +3,7 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "wonik.h"
+#include "random.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
@@ -16,8 +17,9 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+
 	//hammer(); - 일단 비활성화
-	DrawField();
+	DrawGameField(random());
 	glutSwapBuffers();
 }
 

@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="moleGame.cpp" />
+    <ClCompile Include="random.cpp" />
     <ClCompile Include="wonik.cpp" />
   </ItemGroup>
   <ItemGroup>

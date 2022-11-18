@@ -8,7 +8,8 @@ void PassiveMouseMotion(int x, int y);
 
 void hammer();
 
-void DrawField();
+void DrawSquare(int num, int RandomNumber, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2);
+void DrawGameField(int RandomNumber);
 
 extern const int DisplaySize;		 // 윈도우 사이즈 기본 단위
 extern const int Width; // 가로 길이
