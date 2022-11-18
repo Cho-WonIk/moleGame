@@ -6,5 +6,4 @@
 using namespace std;
 
 srand(time(NULL));
-extern int randInt = (rand() % 9) + 1;  // 10 ¹Ì¸¸ÀÇ ·£´ı ÇÔ¼ö
-
+extern int randInt = (rand() % 9) + 1;  // 1~9 ì‚¬ì´ì˜ ëœë¤ ë‚œìˆ˜ ìƒì„±
