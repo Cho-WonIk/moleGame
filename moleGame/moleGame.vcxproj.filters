@@ -18,5 +18,23 @@
     <ClCompile Include="moleGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="mouse.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mouse.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="파일 출처.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="hammer.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
