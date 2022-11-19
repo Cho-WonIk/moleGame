@@ -50,6 +50,7 @@ int main(int argc, char** argv) {
 
 	glutReshapeFunc(MoleReshape);
 	glutPassiveMotionFunc(PassiveMouseMotion);
+	glutMouseFunc(is_Catch_Mole);
 	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
 
 	glutMainLoop();
