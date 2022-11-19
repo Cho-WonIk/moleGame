@@ -74,28 +74,28 @@ void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY)
 		glMatrixMode(GL_MODELVIEW);
 		GLfloat Click_X = (GLfloat)(MouseX - (GLfloat)Width / 2.0)* (GLfloat)(1.0 / (GLfloat)(Width / 2.0));
 		GLfloat Click_Y = -(GLfloat)(MouseY - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0));
-		//std::cout << Click_X << " " << Click_Y << std::endl;
-		int x = -1;
+		std::cout << Click_X << " " << Click_Y << std::endl;
+		int x = -100;
 		int y = -1;
 
+		if (Click_X < 0.14) //범위 안인지 확인
+		{
+			if (Click_X >= -1.0) // 1행
+			{
+				x = 0;
 
-		if ((Click_X >= -1.0 && Click_X < -0.6)) // 1행인 경우
-		{
-			x = 0;
-		}
-		else if ((Click_X >= -0.6 && Click_X < -0.2)) // 2행인 경우
-		{
-			x = 1;
-		}
-		else if ((Click_X >= -0.2 && Click_X < 1.4)) // 3행인 경우
-		{
-			x = 2;
-		}
-		else
-		{
-			x = -1;
-		}
+				if (Click_X >= -0.6) // 2행
+				{
+					x = 1;
 
+					if (Click_X >= -0.2) //3행
+					{
+						x = 2;
+					}
+				}
+			}
+		}
+		
 		if ((Click_Y >= 0.33 && Click_Y < 1.0)) // 1열인 경우
 		{
 			y = 0;
