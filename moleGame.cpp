@@ -49,8 +49,9 @@ int main(int argc, char** argv) {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	glutReshapeFunc(MoleReshape);
-	glutPassiveMotionFunc(PassiveMouseMotion);
+	//glutPassiveMotionFunc(PassiveMouseMotion);
 	glutMouseFunc(is_Catch_Mole);
+	glutTimerFunc(1000, Respawn, 1000); // 두저지 위치 쿨타임
 	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
 
 	glutMainLoop();

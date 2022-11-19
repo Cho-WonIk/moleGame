@@ -16,6 +16,8 @@ void DrawGameField(int RandomNumber);
 void convertDeviceXYOpenGLXY(GLfloat* ox, GLfloat*oy); // 윈도우 좌표계를 gl좌표계로 변환
 
 void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY);
+void Respawn(int time);
+
 
 extern const int Width; // 가로 길이
 extern const int Height; // 세로 길이

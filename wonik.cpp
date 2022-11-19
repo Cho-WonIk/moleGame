@@ -96,22 +96,31 @@ void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY)
 			}
 		}
 		
-		if ((Click_Y >= 0.33 && Click_Y < 1.0)) // 1열인 경우
+		if (Click_Y > -1.0) //범위 안인지 확인
 		{
-			y = 0;
+			if (Click_Y <= 1.0)	// 1열
+			{
+				y = 0;
+
+				if (Click_Y <= 0.33) // 2열
+				{
+					y = 1;
+
+					if (Click_Y <= -0.33) // 3열
+					{
+						y = 2;
+					}
+				}
+			}
 		}
-		else if ((Click_Y >= -0.33 && Click_Y < 0.33)) // 2열인 경우
-		{
-			y = 1;
-		}
-		else if ((Click_Y >= -1.0 && Click_Y < -0.33)) // 3열인 경우
-		{
-			y = 2;
-		}
-		else
-		{
-			y = -1;
-		}
+		
 		std::cout << 3 * y + x + 1 << std::endl;
 	}
+}
+
+void Respawn(int time)
+{
+	std::cout << time << std::endl;
+	glutPostRedisplay();
+	glutTimerFunc(time, Respawn, 1000);
 }
