@@ -1,7 +1,6 @@
 #pragma once
 #include "wonik.h"
 
-
 void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 {
 	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
@@ -117,6 +116,12 @@ void Respawn(int time)
 {
 	//std::cout << time << std::endl;
 	MolePosition = random();
+	GameTime += time;
+
+	std::cout << GameTime << std::endl;
+	if (GameTime < 1000 * 60)
+	{
+		glutTimerFunc(time, Respawn, 1000);
+	}
 	glutPostRedisplay();
-	glutTimerFunc(time, Respawn, 1000);
 }

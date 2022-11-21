@@ -3,19 +3,19 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "wonik.h"
-#include "random.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
 const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 
-GLfloat MouseX, MouseY;
+GLfloat MouseX, MouseY; //마우스 위치 - gl좌표계로 변환됨
 
-const GLfloat FeildSize = 4.0;
-const GLfloat Distance = FeildSize / 3.0;
-const GLfloat StartX = -3.5;
-const GLfloat StartY = 2.0;
+const GLfloat FeildSize = 4.0; // 게임판 크기
+const GLfloat Distance = FeildSize / 3.0; // 게임판 격자 간격
+const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
+const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 
+GLint GameTime = 0; // 게임플레이시간 계산
 GLint MolePosition, Score = 0;
 
 
