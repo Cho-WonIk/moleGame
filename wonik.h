@@ -24,6 +24,8 @@ extern const int Height; // 세로 길이
 
 extern GLfloat MouseX, MouseY;
 
+extern GLint MolePosition, Score;
+
 extern const GLfloat FeildSize;
 extern const GLfloat Distance;
 extern const GLfloat StartX, StartY;

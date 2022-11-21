@@ -47,13 +47,13 @@ void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 	glRectf(x1, y1, x2, y2);
 }
 
-void DrawGameField(int RandomNumber)
+void DrawGameField(int MoleNumber)
 {
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
 		{
-			DrawSquare( (3 * y + x + 1) == RandomNumber, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
+			DrawSquare( (3 * y + x + 1) == MoleNumber, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
 		}
 	}
 	glFlush();
@@ -61,15 +61,14 @@ void DrawGameField(int RandomNumber)
 
 void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 {
+	int NumpadX = -100;
+	int NumpadY = -1;
+
 	if (Button ==GLUT_LEFT_BUTTON && State == GLUT_DOWN)
 	{
 		glMatrixMode(GL_MODELVIEW);
 		convertDeviceXYOpenGLXY(mX, mY);
-		std::cout << MouseX << " " << MouseY << std::endl;
-
-		int NumpadX = -100;
-		int NumpadY = -1;
-
+		//std::cout << MouseX << " " << MouseY << std::endl;
 		if (MouseX < (StartX + FeildSize)) //범위 안인지 확인
 		{
 			if (MouseX >= StartX) // 1행
@@ -105,14 +104,19 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 				}
 			}
 		}
-		
-		std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
+		//std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
+	}
+	if (MolePosition == (3 * NumpadY + NumpadX + 1))
+	{
+		Score += 1;
+		std::cout << Score << std::endl;
 	}
 }
 
 void Respawn(int time)
 {
 	//std::cout << time << std::endl;
+	MolePosition = random();
 	glutPostRedisplay();
 	glutTimerFunc(time, Respawn, 1000);
 }

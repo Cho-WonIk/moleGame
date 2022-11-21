@@ -16,6 +16,9 @@ const GLfloat Distance = FeildSize / 3.0;
 const GLfloat StartX = -3.5;
 const GLfloat StartY = 2.0;
 
+GLint MolePosition, Score = 0;
+
+
 void MoleGame_Display() {
 	glViewport(0, 0, Width, Height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -24,7 +27,7 @@ void MoleGame_Display() {
 
 
 	//hammer(); - 일단 비활성화
-	DrawGameField(random());
+	DrawGameField(MolePosition);
 	glutSwapBuffers();
 }
 
