@@ -72,7 +72,7 @@ GLvoid glPrint(const char* fmt, ...)                // Custom GL "Print" Routine
         return;                     // Do Nothing
 
     va_start(ap, fmt);              // Parses The String For Variables
-    vsprintf(text, fmt, ap);    // And Converts Symbols To Actual Numbers
+    vsprintf_s(text, fmt, ap);    // And Converts Symbols To Actual Numbers
     va_end(ap);                     // Results Are Stored In Text
 
     glPushAttrib(GL_LIST_BIT);              // Pushes The Display List Bits
