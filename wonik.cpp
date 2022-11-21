@@ -2,10 +2,10 @@
 #include "wonik.h"
 
 
-void convertDeviceXYOpenGLXY(GLfloat* ox, GLfloat* oy)
+void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 {
-	*ox = (GLfloat)(MouseX - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Width / 2.0));
-	*oy = -(GLfloat)(MouseY - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0));
+	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
+	MouseY = -(GLfloat)(Y - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
 }
 
 void PassiveMouseMotion(int x, int y)
@@ -49,12 +49,6 @@ void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 
 void DrawGameField(int RandomNumber)
 {
-	GLfloat FeildSize = 4.0;
-	GLfloat Distance = FeildSize / 3.0;
-
-	GLfloat StartX = -3.5;
-	GLfloat StartY = 2.0;
-
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
@@ -62,65 +56,63 @@ void DrawGameField(int RandomNumber)
 			DrawSquare( (3 * y + x + 1) == RandomNumber, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
 		}
 	}
-
 	glFlush();
 }
 
-
-void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY)
+void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 {
 	if (Button ==GLUT_LEFT_BUTTON && State == GLUT_DOWN)
 	{
 		glMatrixMode(GL_MODELVIEW);
-		GLfloat Click_X = (GLfloat)(MouseX - (GLfloat)Width / 2.0)* (GLfloat)(1.0 / (GLfloat)(Width / 2.0));
-		GLfloat Click_Y = -(GLfloat)(MouseY - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0));
-		std::cout << Click_X << " " << Click_Y << std::endl;
-		int x = -100;
-		int y = -1;
+		convertDeviceXYOpenGLXY(mX, mY);
+		std::cout << MouseX << " " << MouseY << std::endl;
 
-		if (Click_X < 0.14) //범위 안인지 확인
+		int NumpadX = -100;
+		int NumpadY = -1;
+
+		if (MouseX < (StartX + FeildSize)) //범위 안인지 확인
 		{
-			if (Click_X >= -1.0) // 1행
+			if (MouseX >= StartX) // 1행
 			{
-				x = 0;
+				NumpadX = 0;
 
-				if (Click_X >= -0.6) // 2행
+				if (MouseX >= (StartX + Distance)) // 2행
 				{
-					x = 1;
+					NumpadX = 1;
 
-					if (Click_X >= -0.2) //3행
+					if (MouseX >= (StartX + 2 * Distance)) //3행
 					{
-						x = 2;
+						NumpadX = 2;
 					}
 				}
 			}
 		}
 		
-		if (Click_Y > -1.0) //범위 안인지 확인
+		if (MouseY > (StartY - FeildSize)) //범위 안인지 확인
 		{
-			if (Click_Y <= 1.0)	// 1열
+			if (MouseY <= StartY)	// 1열
 			{
-				y = 0;
+				NumpadY = 0;
 
-				if (Click_Y <= 0.33) // 2열
+				if (MouseY <= (StartY - Distance)) // 2열
 				{
-					y = 1;
+					NumpadY = 1;
 
-					if (Click_Y <= -0.33) // 3열
+					if (MouseY <= (StartY - 2 * Distance)) // 3열
 					{
-						y = 2;
+						NumpadY = 2;
 					}
 				}
 			}
 		}
 		
-		std::cout << 3 * y + x + 1 << std::endl;
+		std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
 	}
 }
 
 void Respawn(int time)
 {
-	std::cout << time << std::endl;
+	//std::cout << time << std::endl;
 	glutPostRedisplay();
 	glutTimerFunc(time, Respawn, 1000);
 }

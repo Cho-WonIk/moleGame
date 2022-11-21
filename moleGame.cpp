@@ -9,7 +9,12 @@
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
 const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 
-int MouseX, MouseY;
+GLfloat MouseX, MouseY;
+
+const GLfloat FeildSize = 4.0;
+const GLfloat Distance = FeildSize / 3.0;
+const GLfloat StartX = -3.5;
+const GLfloat StartY = 2.0;
 
 void MoleGame_Display() {
 	glViewport(0, 0, Width, Height);
