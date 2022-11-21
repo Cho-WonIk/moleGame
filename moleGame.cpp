@@ -19,13 +19,11 @@ GLint GameTime = 0; // 게임플레이시간 계산
 GLint Score = 0; // 게임 점수
 GLint MolePosition; // 두더지 위치
 
-
 void MoleGame_Display() {
 	glViewport(0, 0, Width, Height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 
 	//hammer(); - 일단 비활성화
 	DrawGameField(MolePosition);
@@ -35,15 +33,10 @@ void MoleGame_Display() {
 void MoleReshape(int width, int height) {
 
 	glViewport(0, 0, width, height);                   //그냥 윈도우 크기대로 뷰포트 해줌
-
 	glMatrixMode(GL_PROJECTION);
-
 	glLoadIdentity();
-
 	glOrtho(-2.0 * (GLfloat)width / (GLfloat)height, 2.0 * (GLfloat)width / (GLfloat)height, -2.0, 2.0, -1.0, 1.0);
-
 	glMatrixMode(GL_MODELVIEW);
-
 	glutPostRedisplay();
 }
 
