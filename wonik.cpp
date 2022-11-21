@@ -119,7 +119,7 @@ void Respawn(int time)
 	GameTime += time;
 
 	std::cout << GameTime << std::endl;
-	if (GameTime < 1000 * 60)
+	if (GameTime < 1000 * 60) // 게임플레이 타임은 60초
 	{
 		glutTimerFunc(time, Respawn, 1000);
 	}
