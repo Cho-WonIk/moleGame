@@ -19,6 +19,8 @@ extern const GLfloat StartX, StartY; // 게임판을 그릴 시작위치 (왼쪽 위)
 
 extern GLint GameTime;
 
+extern bool can_add_score;	// 점수 중복 입력방지
+
 void PassiveMouseMotion(int x, int y); // 마우스에 망치 달기
 
 void hammer(); // 망치 오브젝트

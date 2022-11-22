@@ -105,9 +105,10 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 		}
 		//std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
 	}
-	if (MolePosition == (3 * NumpadY + NumpadX + 1))
+	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // 두더지를 클릭했고 여러번 입력이 아니라면
 	{
 		Score += 1;
+		can_add_score = false; // 마우스 클릭을 했으므로 점수 입력 비활성화
 		std::cout << Score << std::endl;
 	}
 }
@@ -117,6 +118,8 @@ void Respawn(int time)
 	//std::cout << time << std::endl;
 	MolePosition = random();
 	GameTime += time;
+
+	can_add_score = true; // 두더지가 리스폰 되었으므로 점수입력 활성화
 
 	std::cout << GameTime << std::endl;
 	if (GameTime < 1000 * 60) // 게임플레이 타임은 60초

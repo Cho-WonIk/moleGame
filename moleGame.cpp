@@ -15,6 +15,7 @@ const GLfloat Distance = FeildSize / 3.0; // 게임판 격자 간격
 const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
 const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 
+bool can_add_score = true;	// 점수 중복 입력방지
 GLint GameTime = 0; // 게임플레이시간 계산
 GLint Score = 0; // 게임 점수
 GLint MolePosition; // 두더지 위치
