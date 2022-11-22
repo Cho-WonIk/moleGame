@@ -11,7 +11,7 @@ void PassiveMouseMotion(int x, int y)
 {
 	//MouseX = x;
 	//MouseY = y;
-	//std::cout << x << "  " << y << std::endl;
+	std::cout << MouseX << "  " << MouseY << std::endl;
 	glutPostRedisplay();
 }
 
@@ -121,7 +121,7 @@ void Respawn(int time)
 
 	can_add_score = true; // 두더지가 리스폰 되었으므로 점수입력 활성화
 
-	std::cout << GameTime << std::endl;
+	//std::cout << GameTime << std::endl;
 	if (GameTime < 1000 * 60) // 게임플레이 타임은 60초
 	{
 		glutTimerFunc(time, Respawn, 1000);

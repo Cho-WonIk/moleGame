@@ -3,6 +3,7 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "wonik.h"
+#include "glText.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
@@ -27,6 +28,7 @@ void MoleGame_Display() {
 	glLoadIdentity();
 
 	//hammer(); - 일단 비활성화
+
 	DrawGameField(MolePosition);
 	glutSwapBuffers();
 }
@@ -52,9 +54,9 @@ int main(int argc, char** argv) {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	glutReshapeFunc(MoleReshape);
-	//glutPassiveMotionFunc(PassiveMouseMotion);
+	glutPassiveMotionFunc(PassiveMouseMotion);
 	glutMouseFunc(is_Catch_Mole);
-	glutTimerFunc(1000, Respawn, 1000); // 두저지 위치 쿨타임
+	glutTimerFunc(1000, Respawn, 1000); // 두더지 위치 쿨타임
 	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
 
 	glutMainLoop();
