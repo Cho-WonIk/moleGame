@@ -147,6 +147,7 @@
     <ClInclude Include="glText.h" />
     <ClInclude Include="wonik.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="zerofill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
