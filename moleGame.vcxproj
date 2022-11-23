@@ -132,9 +132,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ui.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="moleGame.cpp" />
-    <ClCompile Include="wonik.cpp" />
+    <ClCompile Include="GamePlay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="파일 출처.txt" />
@@ -143,9 +144,9 @@
     <Image Include="hammer.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ui.h" />
     <ClInclude Include="util.h" />
-    <ClInclude Include="wonik.h" />
-    <ClInclude Include="zerofill.h" />
+    <ClInclude Include="GamePlay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

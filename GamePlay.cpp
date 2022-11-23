@@ -1,5 +1,15 @@
 #pragma once
-#include "wonik.h"
+#include "GamePlay.h"
+
+GLfloat MouseX, MouseY; //마우스 위치 - gl좌표계로 변환됨
+GLint GameTime = 0; // 게임플레이시간 계산
+
+const GLfloat FeildSize = 4.0; // 게임판 크기
+const GLfloat Distance = FeildSize / 3.0; // 게임판 격자 간격
+const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
+const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
+
+bool can_add_score = true;	// 점수 중복 입력방지
 
 void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 {
@@ -7,11 +17,10 @@ void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 	MouseY = -(GLfloat)(Y - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
 }
 
-void PassiveMouseMotion(int x, int y)
+void PassiveMouseMotion(int mX, int mY)
 {
-	//MouseX = x;
-	//MouseY = y;
-	//std::cout << MouseX << "  " << MouseY << std::endl;
+	convertDeviceXYOpenGLXY(mX, mY);
+	std::cout << MouseX << " " << MouseY << std::endl;
 	glutPostRedisplay();
 }
 
@@ -109,14 +118,20 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	{
 		Score += 1;
 		can_add_score = false; // 마우스 클릭을 했으므로 점수 입력 비활성화
-		std::cout << Score << std::endl;
+		//std::cout << Score << std::endl;
 	}
 }
 
 void Respawn(int time)
 {
 	//std::cout << time << std::endl;
-	MolePosition = random();
+	int tmp = random();
+	if (tmp == MolePosition) // 생성된 난수가 이전 값과 같다면 다시 함수 실행
+	{
+		tmp = random();
+	}
+	MolePosition = tmp;
+	
 	GameTime += time;
 
 	can_add_score = true; // 두더지가 리스폰 되었으므로 점수입력 활성화
@@ -124,7 +139,7 @@ void Respawn(int time)
 	//std::cout << GameTime << std::endl;
 	if (GameTime < 1000 * 60) // 게임플레이 타임은 60초
 	{
-		glutTimerFunc(time, Respawn, 1000);
+		glutTimerFunc(time, Respawn, time);
 	}
 	glutPostRedisplay();
 }

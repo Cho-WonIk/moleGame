@@ -2,22 +2,14 @@
 #include <GL/glut.h>
 #include <GL/GL.h>
 #include <GL/GLU.h>
-#include "wonik.h"
+#include "GamePlay.h"
 #include "util.h"
+#include "ui.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
 const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 
-GLfloat MouseX, MouseY; //마우스 위치 - gl좌표계로 변환됨
-
-const GLfloat FeildSize = 4.0; // 게임판 크기
-const GLfloat Distance = FeildSize / 3.0; // 게임판 격자 간격
-const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
-const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
-
-bool can_add_score = true;	// 점수 중복 입력방지
-GLint GameTime = 0; // 게임플레이시간 계산
 GLint Score = 0; // 게임 점수
 GLint MolePosition; // 두더지 위치
 
@@ -28,8 +20,9 @@ void MoleGame_Display() {
 	glLoadIdentity();
 
 	//hammer(); - 일단 비활성화
-	glBitmapText(2.0, -0.5, 0.0, ZeroFill_Number(Score));
-	DrawGameField(MolePosition);
+	UI(2.0, -0.5, Score);
+	DrawGameField(MolePosition); // 게임판 작성
+
 	glutSwapBuffers();
 }
 
@@ -45,6 +38,8 @@ void MoleReshape(int width, int height) {
 
 int main(int argc, char** argv) {
 
+	int Respawn_delay = 800; // 두더지 생성 시간 조절
+
 	glutInit(&argc, argv); // initilize 초기화
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(Width, Height);
@@ -56,7 +51,7 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(MoleReshape);
 	glutPassiveMotionFunc(PassiveMouseMotion);
 	glutMouseFunc(is_Catch_Mole);
-	glutTimerFunc(1000, Respawn, 1000); // 두더지 위치 쿨타임
+	glutTimerFunc(Respawn_delay, Respawn, Respawn_delay); // 두더지 위치 쿨타임
 	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
 
 	glutMainLoop();

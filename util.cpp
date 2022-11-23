@@ -10,7 +10,7 @@ int random()
 
 void glBitmapText(float x, float y, float z, std::string text, void* font)
 {
-	glColor3f(0.0, 0.0, 0.0);
+	
     glRasterPos3f(x, y, z);
 	for (int i = 0; i < text.length(); i++)
 	{
