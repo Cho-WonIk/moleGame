@@ -2,15 +2,16 @@
 
 bool is_GameStart = false;
 
-void PrintScore(float x, float y, GLint Score)
+void PrintNum(float x, float y, GLint Num, std::string AddText, int length)// 숫자 출력 함수
 {
-	glColor3f(0.0, 0.0, 0.0);							//score 색상 - 일단 검정
-	glBitmapText(x, y, 0.0, "Score: " + ZeroFill_Number(Score)); // 점수표시
+	glColor3f(0.0, 0.0, 0.0);							//색상 - 일단 검정
+	glBitmapText(x, y, 0.0, AddText + ZeroFill_Number(Num, length)); // 숫자 표시
 }
 
 void UI(float x, float y, GLint Score) //전체 UI
 {
-	PrintScore(x, y, Score); //점수 표시
+	PrintNum(x, y, Score, "Score: ", 5); //점수 표시
+	PrintNum(x, y + 0.4, (60000 - GameTime) / 1000, "Time Left: ", 0); // 남은 시간 표시
 	glBitmapText(x, y + 0.8, 0.0, "START"); // 대충 이런식으로 작성해줘 매개변수는 수정해됨 일단 대충 작성한거야
 }
 

@@ -12,8 +12,6 @@ const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 GLint Score = 0; // 게임 점수
 GLint MolePosition; // 두더지 위치
 
-
-
 void MoleGame_Display() {
 	glViewport(0, 0, Width, Height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

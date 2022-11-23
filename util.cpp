@@ -1,6 +1,6 @@
 #include "Util.h"
 
-int random()
+int random() // 1~9사이의 랜덤한 수를 만든다.
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -8,7 +8,7 @@ int random()
 	return dis(gen);
 }
 
-void glBitmapText(float x, float y, float z, std::string text, void* font)
+void glBitmapText(float x, float y, float z, std::string text, void* font) // string을 비트맵형식으로 바꾸어 출력해준다.
 {
 	
     glRasterPos3f(x, y, z);
@@ -19,11 +19,11 @@ void glBitmapText(float x, float y, float z, std::string text, void* font)
 	}
 }
 
-std::string ZeroFill_Number(GLint Number)
+std::string ZeroFill_Number(GLint Number, int length) // length길이로 제로 패딩한 숫자를 반환하다.
 {
 	std::string text = std::to_string(Number);
 	int len = text.length();
-	for (int i = 0; i < 5 - len; i++)
+	for (int i = 0; i < length - len; i++)
 	{
 		text.insert(0, "0");
 	}
