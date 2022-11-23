@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include <GL/GL.h>
 #include <GL/GLU.h>
-#include "random.h"
+#include "util.h"
 
 extern const int Width; // 가로 길이
 extern const int Height; // 세로 길이

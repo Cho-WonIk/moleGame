@@ -21,10 +21,7 @@
     <ClCompile Include="moleGame.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="random.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="glText.cpp">
+    <ClCompile Include="util.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,10 +39,10 @@
     <ClInclude Include="wonik.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="random.h">
+    <ClInclude Include="util.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="glText.h">
+    <ClInclude Include="zerofill.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

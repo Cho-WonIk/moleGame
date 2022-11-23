@@ -132,9 +132,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glText.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="moleGame.cpp" />
-    <ClCompile Include="random.cpp" />
     <ClCompile Include="wonik.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +143,8 @@
     <Image Include="hammer.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="glText.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="wonik.h" />
-    <ClInclude Include="random.h" />
     <ClInclude Include="zerofill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

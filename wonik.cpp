@@ -11,7 +11,7 @@ void PassiveMouseMotion(int x, int y)
 {
 	//MouseX = x;
 	//MouseY = y;
-	std::cout << MouseX << "  " << MouseY << std::endl;
+	//std::cout << MouseX << "  " << MouseY << std::endl;
 	glutPostRedisplay();
 }
 

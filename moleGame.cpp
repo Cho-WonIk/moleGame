@@ -3,8 +3,7 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "wonik.h"
-#include "glText.h"
-#include <string>
+#include "util.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
@@ -29,8 +28,7 @@ void MoleGame_Display() {
 	glLoadIdentity();
 
 	//hammer(); - 일단 비활성화
-	std::string text = std::to_string(Score);
-	glBitmapText(2.0, -0.5, 0.0, text);
+	glBitmapText(2.0, -0.5, 0.0, ZeroFill_Number(Score));
 	DrawGameField(MolePosition);
 	glutSwapBuffers();
 }
