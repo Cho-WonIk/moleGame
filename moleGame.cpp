@@ -19,10 +19,10 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//hammer(); - 일단 비활성화
+	
 	UI(2.0, -0.5, Score);
 	DrawGameField(MolePosition); // 게임판 작성
-
+	hammer();
 	glutSwapBuffers();
 }
 

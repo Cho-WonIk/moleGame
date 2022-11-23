@@ -9,5 +9,5 @@ void PrintScore(float x, float y, GLint Score)
 void UI(float x, float y, GLint Score) //전체 UI
 {
 	PrintScore(x, y, Score); //점수 표시
-	glBitmapText(x, y + 0.8, 0.0, "START"); // 대충 이런식으로
+	glBitmapText(x, y + 0.8, 0.0, "START"); // 대충 이런식으로 작성해줘 매개변수는 수정해됨 일단 대충 작성한거야
 }

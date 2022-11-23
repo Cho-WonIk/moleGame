@@ -20,5 +20,5 @@ void DrawGameField(int RandomNumber);											// 전체 게임판 그리는 함수
 
 void convertDeviceXYOpenGLXY(GLint X, GLint Y); // 윈도우 좌표계를 gl좌표계로 변환
 
-void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY); // 마우스 클릭이벤트 발생시 두더지 잡았는지 확인
+void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY); // 마우스 클릭이벤트 발생시 망치를 기울이고 두더지를 잡았는지 확인
 void Respawn(int time); // 두더지 재생성

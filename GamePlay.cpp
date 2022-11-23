@@ -10,6 +10,7 @@ const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
 const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 
 bool can_add_score = true;	// 점수 중복 입력방지
+bool is_Mouse_Click = false;
 
 void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 {
@@ -20,29 +21,36 @@ void convertDeviceXYOpenGLXY(GLint X, GLint Y)
 void PassiveMouseMotion(int mX, int mY)
 {
 	convertDeviceXYOpenGLXY(mX, mY);
-	std::cout << MouseX << " " << MouseY << std::endl;
-	glutPostRedisplay();
+	//std::cout << MouseX << " " << MouseY << std::endl;
+	//glutPostRedisplay();
 }
 
 void hammer()
 {
-	GLfloat x = (static_cast<GLfloat>(MouseX) / Width);
-	GLfloat y = -(static_cast<GLfloat>(MouseY) / Height); //좌표 원점이 달라 -를 붙임
+	glPushMatrix();//망치
+		
+		glTranslatef(MouseX, MouseY, 0.0);
 
-	//std::cout << x << "  " << y << std::endl;
-
-	glTranslatef(x, y, 0.0);
-
-	glPushMatrix();//망치 제작중
-	glColor3f(1.0, 0.3, 0.3);
-
-	glutSolidCube(0.2);
-
-	//glTranslatef(0.5, 0.0, 0.0);
-	//glutSolidCube(0.2);
-
+		if (is_Mouse_Click)
+		{
+			glRotatef(90.0, 0.0, 0.0, 1.0);
+		}
+		else
+		{
+			glRotatef(45.0, 0.0, 0.0, 1.0);
+		}
+		glColor3f(0.0, 0.0, 0.0);
+		glScalef(1.0, 2.5, 1.0);
+		glutSolidCube(0.2); // 손잡이
+		
+		glPushMatrix();
+			glColor3f(1.0, 1.0, 0.0);
+			glTranslatef(0.0, 0.1, 0.0);
+			glScalef(2.9, 0.5, 1.0);
+			glutSolidCube(0.2); // 망치 머리
+		glPopMatrix();
 	glPopMatrix();
-
+	glutPostRedisplay();
 }
 
 void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
@@ -72,11 +80,14 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	int NumpadX = -100;
 	int NumpadY = -1;
 
-	if (Button ==GLUT_LEFT_BUTTON && State == GLUT_DOWN)
-	{
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_DOWN)
+	{	
+		is_Mouse_Click = true;
+		//std::cout << is_Mouse_Click << std::endl;
 		glMatrixMode(GL_MODELVIEW);
 		convertDeviceXYOpenGLXY(mX, mY);
 		//std::cout << MouseX << " " << MouseY << std::endl;
+
 		if (MouseX < (StartX + FeildSize)) //범위 안인지 확인
 		{
 			if (MouseX >= StartX) // 1행
@@ -113,6 +124,11 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 			}
 		}
 		//std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
+	}
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP)
+	{
+		is_Mouse_Click = false;
+		//std::cout << is_Mouse_Click << std::endl;
 	}
 	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // 두더지를 클릭했고 여러번 입력이 아니라면
 	{
