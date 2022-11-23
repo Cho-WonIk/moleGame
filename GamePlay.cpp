@@ -12,13 +12,13 @@ const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 bool can_add_score = true;	// 점수 중복 입력방지
 bool is_Mouse_Click = false;
 
-void convertDeviceXYOpenGLXY(GLint X, GLint Y)
+void convertDeviceXYOpenGLXY(GLint X, GLint Y) // 마우스 픽셀값을 gl좌표계로 변환
 {
 	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
 	MouseY = -(GLfloat)(Y - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
 }
 
-void PassiveMouseMotion(int mX, int mY)
+void PassiveMouseMotion(int mX, int mY) // 마우스클릭이 없을때 마우스 위치값을 변환해줌
 {
 	convertDeviceXYOpenGLXY(mX, mY);
 	//std::cout << MouseX << " " << MouseY << std::endl;
@@ -31,13 +31,11 @@ void hammer()
 		
 		glTranslatef(MouseX, MouseY, 0.0);
 
-		if (is_Mouse_Click)
-		{
-			glRotatef(90.0, 0.0, 0.0, 1.0);
+		if (is_Mouse_Click){
+			glRotatef(90.0, 0.0, 0.0, 1.0); // 마우스가 클릭된경우 90도 회전
 		}
-		else
-		{
-			glRotatef(45.0, 0.0, 0.0, 1.0);
+		else{
+			glRotatef(45.0, 0.0, 0.0, 1.0); // 마우스 클릭이 안된경우 45도 회전
 		}
 		glColor3f(0.0, 0.0, 0.0);
 		glScalef(1.0, 2.5, 1.0);
@@ -80,7 +78,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	int NumpadX = -100;
 	int NumpadY = -1;
 
-	if (Button == GLUT_LEFT_BUTTON && State == GLUT_DOWN)
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_DOWN) // 마우스 왼쪽 버튼이 눌렸을 경우
 	{	
 		is_Mouse_Click = true;
 		//std::cout << is_Mouse_Click << std::endl;
@@ -125,7 +123,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 		}
 		//std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
 	}
-	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP)
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP) // 마우스 왼쪽 버튼이 안눌렸을 경우 마우스가 클릭 안되었다는 사실을 알린다.
 	{
 		is_Mouse_Click = false;
 		//std::cout << is_Mouse_Click << std::endl;

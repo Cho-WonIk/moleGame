@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "UI.h"
 
 void PrintScore(float x, float y, GLint Score)
 {

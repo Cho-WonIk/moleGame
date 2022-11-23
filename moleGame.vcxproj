@@ -132,8 +132,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ui.cpp" />
-    <ClCompile Include="util.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="moleGame.cpp" />
     <ClCompile Include="GamePlay.cpp" />
   </ItemGroup>
@@ -144,8 +144,8 @@
     <Image Include="hammer.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ui.h" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="GamePlay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

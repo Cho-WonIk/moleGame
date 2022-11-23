@@ -3,8 +3,7 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "GamePlay.h"
-#include "util.h"
-#include "ui.h"
+#include "UI.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
@@ -19,10 +18,9 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	
 	UI(2.0, -0.5, Score);
 	DrawGameField(MolePosition); // 게임판 작성
-	hammer();
+	hammer(); // 마우스 커서
 	glutSwapBuffers();
 }
 
