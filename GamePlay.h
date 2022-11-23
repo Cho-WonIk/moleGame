@@ -4,17 +4,20 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "Util.h"
-#include "UI.h"
 
 extern const int Width; // 가로 길이
 extern const int Height; // 세로 길이
 extern GLint Score; // 점수
 extern GLint MolePosition; // 두더지 위치
+extern bool is_GameStart;
 
 // 콜백함수
 void PassiveMouseMotion(int x, int y); // 마우스에 망치 달기
 void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY); // 마우스 클릭이벤트 발생시 망치를 기울이고 두더지를 잡았는지 확인
 void Respawn(int time); // 두더지 재생성
+
+void GameStart();
+
 // 마우스 커서
 void hammer(); // 망치 오브젝트
 // 게임판 그리는 함수

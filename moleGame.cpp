@@ -12,6 +12,8 @@ const int Height = GetSystemMetrics(SM_CYSCREEN) / 2; // 세로 길이
 GLint Score = 0; // 게임 점수
 GLint MolePosition; // 두더지 위치
 
+
+
 void MoleGame_Display() {
 	glViewport(0, 0, Width, Height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -36,8 +38,6 @@ void MoleReshape(int width, int height) {
 
 int main(int argc, char** argv) {
 
-	int Respawn_delay = 800; // 두더지 생성 시간 조절
-
 	glutInit(&argc, argv); // initilize 초기화
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(Width, Height);
@@ -49,8 +49,10 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(MoleReshape);
 	glutPassiveMotionFunc(PassiveMouseMotion);
 	glutMouseFunc(is_Catch_Mole);
-	glutTimerFunc(Respawn_delay, Respawn, Respawn_delay); // 두더지 위치 쿨타임
+	//glutTimerFunc(Respawn_delay, Respawn, Respawn_delay); // 두더지 위치 쿨타임
 	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
+
+	CreateGameMenu();
 
 	glutMainLoop();
 	return 0;

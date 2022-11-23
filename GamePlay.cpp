@@ -12,6 +12,8 @@ const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 bool can_add_score = true;	// 점수 중복 입력방지
 bool is_Mouse_Click = false;
 
+int Respawn_delay = 1000; // 두더지 생성 시간 조절
+
 void convertDeviceXYOpenGLXY(GLint X, GLint Y) // 마우스 픽셀값을 gl좌표계로 변환
 {
 	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
@@ -136,6 +138,15 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	}
 }
 
+void GameStart()
+{
+	if (is_GameStart == false && (GameTime == 0))
+	{
+		Score = 0;
+		Respawn(Respawn_delay);
+	}
+}
+
 void Respawn(int time)
 {
 	//std::cout << time << std::endl;
@@ -154,6 +165,11 @@ void Respawn(int time)
 	if (GameTime < 1000 * 60) // 게임플레이 타임은 60초
 	{
 		glutTimerFunc(time, Respawn, time);
+	}
+	else// 게임 끝난 경우
+	{
+		is_GameStart = false;
+		GameTime = 0;
 	}
 	glutPostRedisplay();
 }
