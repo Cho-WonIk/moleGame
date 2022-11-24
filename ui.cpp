@@ -6,7 +6,7 @@ void PrintNum(float x, float y, GLint Num, std::string AddText, int length)// 숫
 	glBitmapText(x, y, 0.0, AddText + ZeroFill_Number(Num, length)); // 숫자 표시
 }
 
-void UI(float x, float y, GLint Score) //전체 UI
+void UI(float x, float y, GLint Score, GLint GameTime) //전체 UI
 {
 	PrintNum(x, y, Score, "Score: ", 5); //점수 표시
 	PrintNum(x, y + 0.4, (60000 - GameTime) / 1000, "Time Left: ", 0); // 남은 시간 표시
@@ -18,7 +18,7 @@ void MainMenu(int entryID) {
 	switch (entryID)
 	{
 	case static_cast<int>(MainMenu::START):
-		GameStart();
+		GameStart(Respawn_delay);
 		break;
 	case static_cast<int>(MainMenu::GameSpeed):
 		

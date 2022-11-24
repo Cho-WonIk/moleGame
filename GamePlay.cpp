@@ -48,13 +48,13 @@ void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 	glRectf(x1, y1, x2, y2);
 }
 
-void DrawGameField(int MoleNumber)
+void DrawGameField()
 {
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
 		{
-			DrawSquare( (3 * y + x + 1) == MoleNumber, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
+			DrawSquare( (3 * y + x + 1) == MolePosition, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
 		}
 	}
 	glFlush();
@@ -118,7 +118,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	}
 }
 
-void GameStart()
+void GameStart(int Respawn_delay)
 {
 	if (is_GameStart == false && (GameTime == 0))
 	{
@@ -136,7 +136,6 @@ void Respawn(int time)
 		tmp = random();
 	}
 	MolePosition = tmp;
-	
 	GameTime += time;		// 리스폰이 될때 마다 게임플레이 시간을 추가
 	can_add_score = true; // 두더지가 리스폰 되었으므로 점수입력 활성화
 
@@ -147,6 +146,7 @@ void Respawn(int time)
 	else// 게임 끝난 경우
 	{
 		is_GameStart = false;
+		MolePosition = -1;
 		GameTime = 0;
 	}
 	glutPostRedisplay();

@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bmp.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="moleGame.cpp" />
@@ -142,8 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="hammer.png" />
+    <Image Include="hole.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bmp.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="GamePlay.h" />
