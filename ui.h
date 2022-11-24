@@ -6,6 +6,17 @@
 #include "util.h"
 #include "GamePlay.h"
 
+enum class MainMenu {
+	START = 1,
+	GameSpeed,
+	Exit
+};
+
+enum class GameLevel {
+	Level_1 = 1,
+	Level_2,
+	Level_3
+};
 extern int Respawn_delay; // 두더지 리스폰 시간
 extern GLint GameTime; // 게임 플레이 시간
 

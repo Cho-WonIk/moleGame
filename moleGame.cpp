@@ -26,7 +26,7 @@ void MoleGame_Display() {
 
 void MoleReshape(int width, int height) {
 
-	glViewport(0, 0, width, height);                   //그냥 윈도우 크기대로 뷰포트 해줌
+	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-2.0 * (GLfloat)width / (GLfloat)height, 2.0 * (GLfloat)width / (GLfloat)height, -2.0, 2.0, -1.0, 1.0);
@@ -47,9 +47,7 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(MoleReshape);
 	glutPassiveMotionFunc(PassiveMouseMotion);
 	glutMouseFunc(is_Catch_Mole);
-	//glutTimerFunc(Respawn_delay, Respawn, Respawn_delay); // 두더지 위치 쿨타임
-	glutDisplayFunc(MoleGame_Display); // display이벤트 발생
-
+	glutDisplayFunc(MoleGame_Display);
 	CreateGameMenu();
 
 	glutMainLoop();
