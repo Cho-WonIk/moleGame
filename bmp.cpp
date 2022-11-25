@@ -69,7 +69,7 @@ bool AUX_RGBImageRec::loadFile(const char* Filename)
 	if (GetDIBits(gldc, (HBITMAP)DIBHandle, 0, sizeY, data, &BMInfo, DIB_RGB_COLORS)) 
 	{
 		NoErrors = true;
-		convertBGRtoRGB();							// NOTE: BMP is in BGR format but OpenGL needs RGB unless you use GL_BGR_EXT
+		//convertBGRtoRGB();							// NOTE: BMP is in BGR format but OpenGL needs RGB unless you use GL_BGR_EXT
 	}
 
 	DeleteObject(DIBHandle);						// don't need the BMP Object anymore  

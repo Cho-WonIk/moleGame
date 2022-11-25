@@ -4,6 +4,7 @@
 #include <GL/GLU.h>
 #include "GamePlay.h"
 #include "UI.h"
+#include "bmp.h"
 
 //화면 크기는 모니터크기의 1/4
 const int Width = GetSystemMetrics(SM_CXSCREEN) / 2; // 가로 길이
