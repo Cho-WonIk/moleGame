@@ -1,4 +1,6 @@
+#pragma once
 #include "Util.h"
+
 
 int random() // 1~9»çÀÌÀÇ ·£´ýÇÑ ¼ö¸¦ ¸¸µç´Ù.
 {
@@ -27,48 +29,4 @@ std::string ZeroFill_Number(GLint Number, int length) // length±æÀÌ·Î Á¦·Î ÆÐµùÇ
 		text.insert(0, "0");
 	}
 	return text;
-}
-
-void Textureinit(void)
-{
-    glShadeModel(GL_SMOOTH);       // Enable Smooth Shading
-    glClearColor(0.0f, 0.0f, 0.0f, 0.5f);    // Black Background
-    glEnable(GL_COLOR_MATERIAL);
-    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-
-    glEnable(GL_TEXTURE_2D);
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glGenTextures(MAX_NO_TEXTURES, texture);
-
-    AUX_RGBImageRec* TextureImage[MAX_NO_TEXTURES];     // Create Storage Space For The Texture
-
-    memset(TextureImage, 0, sizeof(void*) * MAX_NO_TEXTURES);            // Set The Pointer To NULL
-
-
-
-    // if ((TextureImage[0] = LoadBMP("»ï¼º 4-1 SLIDE(2)_00001.bmp")) &&
-    //  (TextureImage[1] = LoadBMP("»ï¼º 4-1 SLIDE(2)_00002.bmp")))   //ÀÌ¹ÌÁö ·Îµù
-    TextureImage[0]->AUX_RGBImageRec::loadFile("»ï¼º 4-1 SLIDE(2)_00001.bmp");
-    TextureImage[1]->AUX_RGBImageRec::loadFile("»ï¼º 4-1 SLIDE(2)_00002.bmp");
-
-
-    {
-        glGenTextures(MAX_NO_TEXTURES, texture);     //ÅØ½ºÃÄ »ý¼º
-
-        //ÅØ½ºÃÄ¿¡ ÀÌ¹ÌÁö 1 ³Ö±â
-        glBindTexture(GL_TEXTURE_2D, texture[0]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, TextureImage[0]->sizeX, TextureImage[0]->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[0]->data);
-        //ÅØ½ºÃÄ¿¡ ÀÌ¹ÌÁö 2 ³Ö±â
-        glBindTexture(GL_TEXTURE_2D, texture[1]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-        // glTexImage2D(GL_TEXTURE_2D, 0, 3, TextureImage[1]->sizeX, TextureImage[1]->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[1]->data);
-        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, TextureImage[1]->sizeX, TextureImage[1]->sizeY, GL_RGB, GL_UNSIGNED_BYTE, TextureImage[1]->data);
-
-    }
-    //////////////////////////
-    glEnable(GL_CULL_FACE);
-    // glEnable(GL_DEPTH_TEST);
 }

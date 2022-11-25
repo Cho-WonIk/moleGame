@@ -4,7 +4,6 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "Util.h"
-#include "bmp.h"
 
 extern const int Width; // 가로 길이
 extern const int Height; // 세로 길이

@@ -1,6 +1,7 @@
 #pragma once
 #include "GamePlay.h"
-
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 void convertDeviceXYOpenGLXY(GLint X, GLint Y) // 마우스 픽셀값을 gl좌표계로 변환
 {
 	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
@@ -40,12 +41,39 @@ void hammer()
 
 void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 {
-	if (is_Diglett)
-		glColor3f(0.0, 1.0, 0.0);
+	unsigned int texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	// 텍스처 wrapping/filtering 옵션 설정(현재 바인딩된 텍스처 객체에 대해)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// 텍스처 로드 및 생성
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load("EmptyHole.png", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		//glGenerateMipmap(GL_TEXTURE_2D);
+	}
 	else
-		glColor3f(1.0, 0.0, 0.0);
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
 
-	glRectf(x1, y1, x2, y2);
+	if (is_Diglett)
+	{
+		glColor3f(0.0, 1.0, 0.0);
+
+		glRectf(x1, y1, x2, y2);
+	}
+	else
+	{
+		glColor3f(1.0, 0.0, 0.0);
+		glRectf(x1, y1, x2, y2);
+	}
 }
 
 void DrawGameField()

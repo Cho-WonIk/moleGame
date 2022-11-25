@@ -142,11 +142,13 @@
     <Text Include="파일 출처.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="EmptyHole.png" />
     <Image Include="hammer.png" />
     <Image Include="hole.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmp.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="GamePlay.h" />
