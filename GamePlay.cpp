@@ -99,10 +99,10 @@ void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 	{
 		glBindTexture(GL_TEXTURE_2D, MyTextureObject[0]);
 		glBegin(GL_POLYGON);
-		glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y2, 0.0f);			//좌측 하단
-		glTexCoord2f(1.0f, 0.0f); glVertex3f(x2, y2, 0.0f);			//우측 하단
-		glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y1, 0.0f);			//우측 상단
-		glTexCoord2f(0.0f, 1.0f); glVertex3f(x1, y1, 0.0f);	//좌측 상단
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y2, -1.0f);			//좌측 하단
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x2, y2, -1.0f);			//우측 하단
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y1, -1.0f);			//우측 상단
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x1, y1, -1.0f);	//좌측 상단
 		glEnd();
 		//glColor3f(1.0, 0.0, 0.0);
 		//glRectf(x1, y1, x2, y2);
