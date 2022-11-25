@@ -20,9 +20,11 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	UI(2.0, -0.5, Score, GameTime);
+	
 	DrawGameField(); // 게임판 작성
-	hammer(); // 마우스 커서
+	UI(2.0, -0.5, Score, GameTime);
+	hammer(); // 마우스 커서.
+
 	glutSwapBuffers();
 }
 
@@ -40,7 +42,7 @@ int main(int argc, char** argv) {
 
 	
 	glutInit(&argc, argv); // initilize 초기화
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(Width, Height);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("MoleGame");

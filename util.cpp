@@ -12,6 +12,7 @@ int random() // 1~9»çÀÌÀÇ ·£´ıÇÑ ¼ö¸¦ ¸¸µç´Ù.
 
 void glBitmapText(float x, float y, float z, std::string text, void* font) // stringÀ» ºñÆ®¸ÊÇü½ÄÀ¸·Î ¹Ù²Ù¾î Ãâ·ÂÇØÁØ´Ù. ±âº» ÆùÆ® ¹× Å©±â: HELVETICA_18
 {
+	glColor3f(0.0f, 0.0f, 0.0f);
     glRasterPos3f(x, y, z);
 	for (int i = 0; i < text.length(); i++)
 	{
@@ -30,3 +31,4 @@ std::string ZeroFill_Number(GLint Number, int length) // length±æÀÌ·Î Á¦·Î ÆĞµùÇ
 	}
 	return text;
 }
+
