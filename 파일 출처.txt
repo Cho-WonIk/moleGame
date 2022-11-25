@@ -2,3 +2,7 @@
 윈도우 화면 정보 얻기 https://tommyhsm.tistory.com/m/132
 난수 생성 알고리즘 https://modoocode.com/304
 오픈 지엘 텍스트 출력 https://dev-nicitis.tistory.com/10
+glaux없이 bmp파일 사용하기 http://egloos.zum.com/sondra/v/5704196
+
+https://heinleinsgame.tistory.com/9
+https://blog.naver.com/PostView.nhn?blogId=jdkim2004&logNo=220708656305

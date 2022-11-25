@@ -1,19 +1,6 @@
 #pragma once
 #include "GamePlay.h"
 
-GLfloat MouseX, MouseY; //¸¶¿ì½º À§Ä¡ - glÁÂÇ¥°è·Î º¯È¯µÊ
-GLint GameTime = 0; // °ÔÀÓÇÃ·¹ÀÌ½Ã°£ °è»ê
-
-const GLfloat FeildSize = 4.0; // °ÔÀÓÆÇ Å©±â
-const GLfloat Distance = FeildSize / 3.0; // °ÔÀÓÆÇ °İÀÚ °£°İ
-const GLfloat StartX = -3.5; // °ÔÀÓÆÇÀ» ±×¸± ½ÃÀÛÀ§Ä¡ (¿ŞÂÊ À§)
-const GLfloat StartY = 2.0; // °ÔÀÓÆÇÀ» ±×¸± ½ÃÀÛÀ§Ä¡ (¿ŞÂÊ À§)
-
-bool can_add_score = true;	// Á¡¼ö Áßº¹ ÀÔ·Â¹æÁö
-bool is_Mouse_Click = false;
-
-int Respawn_delay = 1000; // µÎ´õÁö »ı¼º ½Ã°£ Á¶Àı
-
 void convertDeviceXYOpenGLXY(GLint X, GLint Y) // ¸¶¿ì½º ÇÈ¼¿°ªÀ» glÁÂÇ¥°è·Î º¯È¯
 {
 	MouseX = (GLfloat)(X - (GLfloat)Width / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
@@ -23,14 +10,11 @@ void convertDeviceXYOpenGLXY(GLint X, GLint Y) // ¸¶¿ì½º ÇÈ¼¿°ªÀ» glÁÂÇ¥°è·Î º¯È
 void PassiveMouseMotion(int mX, int mY) // ¸¶¿ì½ºÅ¬¸¯ÀÌ ¾øÀ»¶§ ¸¶¿ì½º À§Ä¡°ªÀ» º¯È¯ÇØÁÜ
 {
 	convertDeviceXYOpenGLXY(mX, mY);
-	//std::cout << MouseX << " " << MouseY << std::endl;
-	//glutPostRedisplay();
 }
 
 void hammer()
 {
 	glPushMatrix();//¸ÁÄ¡
-		
 		glTranslatef(MouseX, MouseY, 0.0);
 
 		if (is_Mouse_Click){
@@ -49,6 +33,7 @@ void hammer()
 			glScalef(2.9, 0.5, 1.0);
 			glutSolidCube(0.2); // ¸ÁÄ¡ ¸Ó¸®
 		glPopMatrix();
+
 	glPopMatrix();
 	glutPostRedisplay();
 }
@@ -63,13 +48,13 @@ void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 	glRectf(x1, y1, x2, y2);
 }
 
-void DrawGameField(int MoleNumber)
+void DrawGameField()
 {
 	for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
 		{
-			DrawSquare( (3 * y + x + 1) == MoleNumber, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
+			DrawSquare( (3 * y + x + 1) == MolePosition, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
 		}
 	}
 	glFlush();
@@ -83,23 +68,20 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	if (Button == GLUT_LEFT_BUTTON && State == GLUT_DOWN) // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°ÀÌ ´­·ÈÀ» °æ¿ì
 	{	
 		is_Mouse_Click = true;
-		//std::cout << is_Mouse_Click << std::endl;
-		glMatrixMode(GL_MODELVIEW);
 		convertDeviceXYOpenGLXY(mX, mY);
-		//std::cout << MouseX << " " << MouseY << std::endl;
 
 		if (MouseX < (StartX + FeildSize)) //¹üÀ§ ¾ÈÀÎÁö È®ÀÎ
-		{
-			if (MouseX >= StartX) // 1Çà
-			{
+		{					
+			if (MouseX >= StartX) // 1ÇàÀÎ °æ¿ì
+			{							
 				NumpadX = 0;
 
-				if (MouseX >= (StartX + Distance)) // 2Çà
-				{
+				if (MouseX >= (StartX + Distance)) // 2ÇàÀÎ °æ¿ì
+				{		
 					NumpadX = 1;
 
-					if (MouseX >= (StartX + 2 * Distance)) //3Çà
-					{
+					if (MouseX >= (StartX + 2 * Distance))  //3ÇàÀÎ °æ¿ì
+					{ 
 						NumpadX = 2;
 					}
 				}
@@ -107,13 +89,13 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 		}
 		
 		if (MouseY > (StartY - FeildSize)) //¹üÀ§ ¾ÈÀÎÁö È®ÀÎ
-		{
-			if (MouseY <= StartY)	// 1¿­
-			{
+		{				
+			if (MouseY <= StartY) // 1¿­
+			{							
 				NumpadY = 0;
 
 				if (MouseY <= (StartY - Distance)) // 2¿­
-				{
+				{		
 					NumpadY = 1;
 
 					if (MouseY <= (StartY - 2 * Distance)) // 3¿­
@@ -123,14 +105,12 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 				}
 			}
 		}
-		//std::cout << 3 * NumpadY + NumpadX + 1 << std::endl;
 	}
-	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP) // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°ÀÌ ¾È´­·ÈÀ» °æ¿ì ¸¶¿ì½º°¡ Å¬¸¯ ¾ÈµÇ¾ú´Ù´Â »ç½ÇÀ» ¾Ë¸°´Ù.
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP && is_Mouse_Click) // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ´­·¶´Ù ¶§¸é ¸¶¿ì½º Å¬¸¯»óÅÂ¸¦ ¹Ù²Û´Ù.
 	{
 		is_Mouse_Click = false;
-		//std::cout << is_Mouse_Click << std::endl;
 	}
-	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // µÎ´õÁö¸¦ Å¬¸¯Çß°í ¿©·¯¹ø ÀÔ·ÂÀÌ ¾Æ´Ï¶ó¸é
+	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // µÎ´õÁö¸¦ Å¬¸¯Çß°í Á¡¼ö ÀÔ·ÂÀÌ °¡´ÉÇÑ »óÅÂÀÏ¶§
 	{
 		Score += 1;
 		can_add_score = false; // ¸¶¿ì½º Å¬¸¯À» ÇßÀ¸¹Ç·Î Á¡¼ö ÀÔ·Â ºñÈ°¼ºÈ­
@@ -138,7 +118,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	}
 }
 
-void GameStart()
+void GameStart(int Respawn_delay)
 {
 	if (is_GameStart == false && (GameTime == 0))
 	{
@@ -156,12 +136,9 @@ void Respawn(int time)
 		tmp = random();
 	}
 	MolePosition = tmp;
-	
-	GameTime += time;
-
+	GameTime += time;		// ¸®½ºÆùÀÌ µÉ¶§ ¸¶´Ù °ÔÀÓÇÃ·¹ÀÌ ½Ã°£À» Ãß°¡
 	can_add_score = true; // µÎ´õÁö°¡ ¸®½ºÆù µÇ¾úÀ¸¹Ç·Î Á¡¼öÀÔ·Â È°¼ºÈ­
 
-	//std::cout << GameTime << std::endl;
 	if (GameTime < 1000 * 60) // °ÔÀÓÇÃ·¹ÀÌ Å¸ÀÓÀº 60ÃÊ
 	{
 		glutTimerFunc(time, Respawn, time);
@@ -169,6 +146,7 @@ void Respawn(int time)
 	else// °ÔÀÓ ³¡³­ °æ¿ì
 	{
 		is_GameStart = false;
+		MolePosition = -1;
 		GameTime = 0;
 	}
 	glutPostRedisplay();
