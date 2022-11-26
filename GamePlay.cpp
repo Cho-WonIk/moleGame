@@ -20,7 +20,7 @@ AUX_RGBImageRec* LoadBMP(const char* szFilename) {
 
 int LoadGLTextures(const char* szFilePath, int index) {       //파일을 로드하고 텍스쳐로 변환
 	int Status = FALSE;
-	glClearColor(0.0, 0.0, 0.0, 0.5);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 	memset(pTextureImage, 0, sizeof(void*) * 1);    //포인터를 널로
 
 	if (pTextureImage[index] = LoadBMP(szFilePath)) {   //비트맵을 로드하고 오류확인
@@ -82,6 +82,7 @@ void hammer()
 
 void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 {
+	glColor4f(1.0, 1.0, 1.0, 0.0);
 	if (is_Diglett)
 	{
 		glBindTexture(GL_TEXTURE_2D, MyTextureObject[1]);
