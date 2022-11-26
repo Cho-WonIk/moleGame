@@ -11,7 +11,7 @@ void UI(float x, float y, GLint Score, GLint GameTime) //전체 UI
 	PrintNum(x, y, Score, "Score: ", 5); //점수 표시
 	PrintNum(x, y + 0.4, (60000 - GameTime) / 1000, "Time Left: ", 0); // 남은 시간 표시
 	glBitmapText(x, y + 0.8, 0.0, "START");
-	PrintNum(x, y + 1.2, Respawn_delay, "Level : ", 0);
+	PrintNum(x, y + 1.2, Level, "Level : ", 0);
 }
 
 void MainMenu(int entryID) {
@@ -34,12 +34,15 @@ void GameLevelMenu(int entryID) {
 	{
 		case static_cast<int>(GameLevel::Level_1):
 			Respawn_delay = 1000;
+			Level = 1;
 			break;
 		case static_cast<int>(GameLevel::Level_2):
 			Respawn_delay = 800;
+			Level = 2;
 			break;
 		case static_cast<int>(GameLevel::Level_3):
 			Respawn_delay = 500;
+			Level = 3;
 			break;
 	}
 }
