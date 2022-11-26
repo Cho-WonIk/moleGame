@@ -2,8 +2,8 @@
 #include "GamePlay.h"
 #include "bmp.h"
 
-unsigned int MyTextureObject[1];
-AUX_RGBImageRec* pTextureImage[1];
+unsigned int MyTextureObject[2];
+AUX_RGBImageRec* pTextureImage[2];
 
 AUX_RGBImageRec* LoadBMP(const char* szFilename) {
 	FILE* pFile = NULL;
@@ -18,31 +18,27 @@ AUX_RGBImageRec* LoadBMP(const char* szFilename) {
 	return NULL;
 }
 
-int LoadGLTextures(const char* szFilePath) {       //파일을 로드하고 텍스쳐로 변환
+int LoadGLTextures(const char* szFilePath, int index) {       //파일을 로드하고 텍스쳐로 변환
 	int Status = FALSE;
 	glClearColor(0.0, 0.0, 0.0, 0.5);
 	memset(pTextureImage, 0, sizeof(void*) * 1);    //포인터를 널로
 
-	if (pTextureImage[0] = LoadBMP(szFilePath)) {   //비트맵을 로드하고 오류확인
+	if (pTextureImage[index] = LoadBMP(szFilePath)) {   //비트맵을 로드하고 오류확인
 		Status = TRUE;                              //상태 플랙을 True로
-		glGenTextures(1, &MyTextureObject[0]);      //텍스쳐 생성
-		glBindTexture(GL_TEXTURE_2D, MyTextureObject[0]);
+		glGenTextures(1, &MyTextureObject[index]);      //텍스쳐 생성
+		glBindTexture(GL_TEXTURE_2D, MyTextureObject[index]);
 		glTexImage2D(GL_TEXTURE_2D, 0, 3,
-			pTextureImage[0]->sizeX, pTextureImage[0]->sizeY,
-			0, GL_RGB, GL_UNSIGNED_BYTE, pTextureImage[0]->data);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-		float boardercolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, boardercolor);
+			pTextureImage[index]->sizeX, pTextureImage[index]->sizeY,
+			0, GL_RGB, GL_UNSIGNED_BYTE, pTextureImage[index]->data);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glEnable(GL_TEXTURE_2D);
 	}
-	if (pTextureImage[0]) {                 //텍스쳐가 존재하면
-		if (pTextureImage[0]->data) {       //텍스쳐 영상이 존재하면
-			free(pTextureImage[0]->data);   //텍스쳐 영상공간 반납
+	if (pTextureImage[index]) {                 //텍스쳐가 존재하면
+		if (pTextureImage[index]->data) {       //텍스쳐 영상이 존재하면
+			free(pTextureImage[index]->data);   //텍스쳐 영상공간 반납
 		}
-		free(pTextureImage[0]);             //텍스쳐 반납
+		free(pTextureImage[index]);             //텍스쳐 반납
 	}
 	return Status;
 }
@@ -187,7 +183,8 @@ void GameStart(int Respawn_delay)
 		Score = 0;
 		Respawn(Respawn_delay);
 
-		LoadGLTextures("Emptyhole.bmp");
+		LoadGLTextures("Emptyhole.bmp", 0);
+		LoadGLTextures("Molehole.bmp", 1);
 		glEnable(GL_TEXTURE_2D);
 		glShadeModel(GL_SMOOTH);
 		glClearDepth(1.0);
