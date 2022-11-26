@@ -144,8 +144,8 @@
   <ItemGroup>
     <Image Include="EmptyHole.png" />
     <Image Include="hammer.png" />
-    <Image Include="hole.bmp" />
-    <Image Include="mole.bmp" />
+    <Image Include="Emptyhole.bmp" />
+    <Image Include="Molehole.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bmp.h" />

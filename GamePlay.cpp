@@ -64,24 +64,24 @@ void PassiveMouseMotion(int mX, int mY) // 마우스클릭이 없을때 마우스 위치값을 �
 void hammer()
 {
 	glPushMatrix();//망치
-		glTranslatef(MouseX, MouseY, 0.0);
+	glTranslatef(MouseX, MouseY, 0.0);
 
-		if (is_Mouse_Click){
-			glRotatef(90.0, 0.0, 0.0, 1.0); // 마우스가 클릭된경우 90도 회전
-		}
-		else{
-			glRotatef(45.0, 0.0, 0.0, 1.0); // 마우스 클릭이 안된경우 45도 회전
-		}
-		glColor3f(0.0, 0.0, 0.0);
-		glScalef(1.0, 2.5, 1.0);
-		glutSolidCube(0.2); // 손잡이
-		
-		glPushMatrix();
-			glColor3f(1.0, 1.0, 0.0);
-			glTranslatef(0.0, 0.1, 0.0);
-			glScalef(2.9, 0.5, 1.0);
-			glutSolidCube(0.2); // 망치 머리
-		glPopMatrix();
+	if (is_Mouse_Click) {
+		glRotatef(90.0, 0.0, 0.0, 1.0); // 마우스가 클릭된경우 90도 회전
+	}
+	else {
+		glRotatef(45.0, 0.0, 0.0, 1.0); // 마우스 클릭이 안된경우 45도 회전
+	}
+	glColor3f(0.0, 0.0, 0.0);
+	glScalef(1.0, 2.5, 1.0);
+	glutSolidCube(0.2); // 손잡이
+
+	glPushMatrix();
+	glColor3f(1.0, 1.0, 0.0);
+	glTranslatef(0.0, 0.1, 0.0);
+	glScalef(2.9, 0.5, 1.0);
+	glutSolidCube(0.2); // 망치 머리
+	glPopMatrix();
 
 	glPopMatrix();
 	glutPostRedisplay();
@@ -89,7 +89,7 @@ void hammer()
 
 void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 {
-	
+
 	if (is_Diglett)
 	{
 		glColor3f(0.0, 1.0, 0.0);
@@ -116,7 +116,7 @@ void DrawGameField()
 	{
 		for (int y = 0; y < 3; y++)
 		{
-			DrawSquare( (3 * y + x + 1) == MolePosition, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
+			DrawSquare((3 * y + x + 1) == MolePosition, StartX + (Distance * x), StartY - (Distance * y), StartX + (Distance * (x + 1)), StartY - (Distance * (y + 1)));
 		}
 	}
 	glFlush();
@@ -128,36 +128,36 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	int NumpadY = -1;
 
 	if (Button == GLUT_LEFT_BUTTON && State == GLUT_DOWN) // 마우스 왼쪽 버튼이 눌렸을 경우
-	{	
+	{
 		is_Mouse_Click = true;
 		convertDeviceXYOpenGLXY(mX, mY);
 
 		if (MouseX < (StartX + FeildSize)) //범위 안인지 확인
-		{					
+		{
 			if (MouseX >= StartX) // 1행인 경우
-			{							
+			{
 				NumpadX = 0;
 
 				if (MouseX >= (StartX + Distance)) // 2행인 경우
-				{		
+				{
 					NumpadX = 1;
 
 					if (MouseX >= (StartX + 2 * Distance))  //3행인 경우
-					{ 
+					{
 						NumpadX = 2;
 					}
 				}
 			}
 		}
-		
+
 		if (MouseY > (StartY - FeildSize)) //범위 안인지 확인
-		{				
+		{
 			if (MouseY <= StartY) // 1열
-			{							
+			{
 				NumpadY = 0;
 
 				if (MouseY <= (StartY - Distance)) // 2열
-				{		
+				{
 					NumpadY = 1;
 
 					if (MouseY <= (StartY - 2 * Distance)) // 3열
@@ -187,7 +187,7 @@ void GameStart(int Respawn_delay)
 		Score = 0;
 		Respawn(Respawn_delay);
 
-		LoadGLTextures("hole.bmp");
+		LoadGLTextures("Emptyhole.bmp");
 		glEnable(GL_TEXTURE_2D);
 		glShadeModel(GL_SMOOTH);
 		glClearDepth(1.0);
