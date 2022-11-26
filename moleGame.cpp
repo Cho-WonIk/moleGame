@@ -19,7 +19,6 @@ void MoleGame_Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	
 	DrawGameField(); // 게임판 작성
 	UI(2.0, -0.5, Score, GameTime);
 	hammer(); // 마우스 커서.
