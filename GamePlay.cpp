@@ -1,6 +1,8 @@
 #pragma once
 #include "GamePlay.h"
 #include "bmp.h"
+#include <mmsystem.h>
+#pragma comment(lib,"winmm.lib")
 
 unsigned int MyTextureObject[2];
 AUX_RGBImageRec* pTextureImage[2];
@@ -166,6 +168,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	{
 		Score += 1;
 		can_add_score = false; // 마우스 클릭을 했으므로 점수 입력 비활성화
+		PlaySound("MP_Blop.wav", 0, SND_FILENAME | SND_ASYNC); // 두더지를 클릭해서 잡았을 시 소리 재생
 		//std::cout << Score << std::endl;
 	}
 }
