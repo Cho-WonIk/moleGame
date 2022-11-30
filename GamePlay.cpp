@@ -159,15 +159,20 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 				}
 			}
 		}
+
+		if ((MouseX >= 2.0 && MouseX <= 2.5) && (MouseY >= 0.7 && MouseY <= 0.8)) //start버튼을 누른 경우
+		{
+			GameStart(Respawn_delay);
+		}
 	}
-	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP && is_Mouse_Click) // 마우스 왼쪽 버튼을 눌렀다 때면 마우스 클릭상태를 바꾼다.
+	if (Button == GLUT_LEFT_BUTTON && State == GLUT_UP && is_Mouse_Click) // 마우스 왼쪽 버튼을 때면 마우스 클릭상태를 바꾼다.
 	{
 		is_Mouse_Click = false;
 	}
 	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // 두더지를 클릭했고 점수 입력이 가능한 상태일때
 	{
 		Score += 1;
-		can_add_score = false; // 마우스 클릭을 했으므로 점수 입력 비활성화
+		can_add_score = false; // 점수를 입력했으므로 점수 입력 비활성화
 		PlaySound("MP_Blop.wav", 0, SND_FILENAME | SND_ASYNC); // 두더지를 클릭해서 잡았을 시 소리 재생
 		//std::cout << Score << std::endl;
 	}
@@ -175,7 +180,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 
 void GameStart(int Respawn_delay)
 {
-	if (is_GameStart == false && (GameTime == 0))
+	if (is_GameStart == false && (GameTime == 0)) // 게임 시작 중복 실행 방지
 	{
 		Score = 0;
 		Respawn(Respawn_delay);
@@ -187,13 +192,11 @@ void GameStart(int Respawn_delay)
 		glClearDepth(1.0);
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
-		//glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	}
 }
 
 void Respawn(int time)
 {
-	//std::cout << time << std::endl;
 	int tmp = random();
 	if (tmp == MolePosition) // 생성된 난수가 이전 값과 같다면 다시 함수 실행
 	{

@@ -17,7 +17,7 @@ enum class GameLevel {
 	Level_2,
 	Level_3
 };
-static int Respawn_delay = 1000; // 두더지 생성 시간 조절
+
 
 static int Level = 1;
 

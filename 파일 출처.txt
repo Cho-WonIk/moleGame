@@ -1,4 +1,3 @@
-뿅망치 이미지 https://namu.wiki/w/%EB%BF%85%EB%A7%9D%EC%B9%98
 뿅망치 효과음 음원 사이트 https://www.mewpot.com/sound-effects/141
 C++ 소리 출력 https://m.blog.naver.com/noksek0615/221593719530
 윈도우 화면 정보 얻기 https://tommyhsm.tistory.com/m/132
@@ -6,9 +5,9 @@ C++ 소리 출력 https://m.blog.naver.com/noksek0615/221593719530
 오픈 지엘 텍스트 출력 https://dev-nicitis.tistory.com/10
 glaux없이 bmp파일 사용하기 http://egloos.zum.com/sondra/v/5704196
 
-https://heinleinsgame.tistory.com/9
-https://blog.naver.com/PostView.nhn?blogId=jdkim2004&logNo=220708656305
+gl텍스쳐 매핑 참고 사이트 https://heinleinsgame.tistory.com/9
+						https://blog.naver.com/PostView.nhn?blogId=jdkim2004&logNo=220708656305
 
-https://velog.io/@undefined/%EB%91%90%EB%8D%94%EC%A7%80-%EA%B2%8C%EC%9E%84-1%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0
+게임판 이미지 출처 https://velog.io/@undefined/%EB%91%90%EB%8D%94%EC%A7%80-%EA%B2%8C%EC%9E%84-1%EC%B0%A8-%EB%A7%8C%EB%93%A4%EA%B8%B0
 
-디그다 이미지 출처 https://m.blog.naver.com/retspe/221317013804
+두더지 이미지 출처 https://m.blog.naver.com/retspe/221317013804

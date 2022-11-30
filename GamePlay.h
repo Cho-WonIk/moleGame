@@ -4,12 +4,15 @@
 #include <GL/GL.h>
 #include <GL/GLU.h>
 #include "Util.h"
+#include "UI.h"
 
 extern const int Width; // 가로 길이
 extern const int Height; // 세로 길이
 extern GLint Score; // 점수
 extern GLint MolePosition; // 두더지 위치
 extern GLint GameTime; // 게임플레이시간 계산
+
+extern int Respawn_delay; // 두더지 생성 시간 조절
 
 static bool is_GameStart = false;
 static GLfloat MouseX, MouseY; //마우스 위치 - gl좌표계로 변환됨

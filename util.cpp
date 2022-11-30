@@ -12,7 +12,6 @@ int random() // 1~9사이의 랜덤한 수를 만든다.
 
 void glBitmapText(float x, float y, float z, std::string text, void* font) // string을 비트맵형식으로 바꾸어 출력해준다. 기본 폰트 및 크기: HELVETICA_18
 {
-	glColor3f(0.0f, 0.0f, 0.0f);
     glRasterPos3f(x, y, z);
 	for (int i = 0; i < text.length(); i++)
 	{
