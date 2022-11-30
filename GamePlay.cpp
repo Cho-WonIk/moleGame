@@ -182,6 +182,7 @@ void GameStart(int Respawn_delay)
 {
 	if (is_GameStart == false && (GameTime == 0)) // 게임 시작 중복 실행 방지
 	{
+		is_GameStart = true; // 게임이 실행되었으므로 true로 바꿈
 		Score = 0;
 		Respawn(Respawn_delay);
 
