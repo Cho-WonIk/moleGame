@@ -20,7 +20,7 @@ void MoleGame_Display() {
 	glLoadIdentity();
 	
 	DrawGameField(); // 게임판 작성
-	UI(2.0, -0.5, Score, GameTime);
+	UI(2.0f, -0.5f, Score, GameTime);
 	hammer(); // 마우스 커서.
 
 	glutSwapBuffers();

@@ -73,8 +73,8 @@ void hammer() // 마우스 아이콘 함수
 
 	glPushMatrix();
 	glColor3f(1.0, 1.0, 0.0);
-	glTranslatef(0.0, 0.1, 0.0);
-	glScalef(2.9, 0.5, 1.0);
+	glTranslatef(0.0f, 0.1f, 0.0f);
+	glScalef(2.9f, 0.5f, 1.0f);
 	glutSolidCube(0.2); // 망치 머리
 	glPopMatrix();
 
