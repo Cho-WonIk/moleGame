@@ -180,10 +180,11 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 
 void GameStart(int Respawn_delay)
 {
-	if (is_GameStart == false && (GameTime == 0)) // 게임 시작 중복 실행 방지
+	if (is_GameStart == false) // 게임 시작 중복 실행 방지
 	{
 		is_GameStart = true; // 게임이 실행되었으므로 true로 바꿈
 		Score = 0;
+		GameTime = 0;
 		Respawn(Respawn_delay);
 
 		LoadGLTextures("Emptyhole.bmp", 0);
@@ -215,7 +216,7 @@ void Respawn(int time)
 	{
 		is_GameStart = false;
 		MolePosition = -1;
-		GameTime = 0;
+		//GameTime = 0;
 	}
 	glutPostRedisplay();
 }
