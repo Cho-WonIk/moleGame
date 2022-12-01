@@ -7,7 +7,7 @@
 unsigned int MyTextureObject[2];
 AUX_RGBImageRec* pTextureImage[2];
 
-AUX_RGBImageRec* LoadBMP(const char* szFilename) {
+AUX_RGBImageRec* LoadBMP(const char* szFilename) { // bmpÆÄÀÏÀ» ºÒ·¯¿À´Â ÇÔ¼ö
 	FILE* pFile = NULL;
 	if (!szFilename) {
 		return NULL;
@@ -20,15 +20,15 @@ AUX_RGBImageRec* LoadBMP(const char* szFilename) {
 	return NULL;
 }
 
-int LoadGLTextures(const char* szFilePath, int index) {       //ÆÄÀÏÀ» ·ÎµåÇÏ°í ÅØ½ºÃÄ·Î º¯È¯
+int LoadGLTextures(const char* szFilePath, int index) {       //LoadBMP·Î ºÒ·¯¿Â ÀÌ¹ÌÁöÆÄÀÏÀ» ÅØ½ºÃÄÆÄÀÏ·Î º¯È¯ÇÏ´Â ÇÔ¼ö
 	int Status = FALSE;
 	glClearColor(0.0, 0.0, 0.0, 0.0);
-	memset(pTextureImage, 0, sizeof(void*) * 1);    //Æ÷ÀÎÅÍ¸¦ ³Î·Î
+	memset(pTextureImage, 0, sizeof(void*) * 1);				//Æ÷ÀÎÅÍ¸¦ ³Î·Î ÃÊ±âÈ­
 
-	if (pTextureImage[index] = LoadBMP(szFilePath)) {   //ºñÆ®¸ÊÀ» ·ÎµåÇÏ°í ¿À·ùÈ®ÀÎ
-		Status = TRUE;                              //»óÅÂ ÇÃ·¢À» True·Î
-		glGenTextures(1, &MyTextureObject[index]);      //ÅØ½ºÃÄ »ý¼º
-		glBindTexture(GL_TEXTURE_2D, MyTextureObject[index]);
+	if (pTextureImage[index] = LoadBMP(szFilePath)) {			//ºñÆ®¸ÊÀ» ·ÎµåÇÏ°í ¿À·ùÈ®ÀÎ
+		Status = TRUE;											//»óÅÂ FlagÀ» True·Î
+		glGenTextures(1, &MyTextureObject[index]);				//ÅØ½ºÃÄ »ý¼º
+		glBindTexture(GL_TEXTURE_2D, MyTextureObject[index]);	
 		glTexImage2D(GL_TEXTURE_2D, 0, 3,
 			pTextureImage[index]->sizeX, pTextureImage[index]->sizeY,
 			0, GL_RGB, GL_UNSIGNED_BYTE, pTextureImage[index]->data);
@@ -51,12 +51,12 @@ void convertDeviceXYOpenGLXY(GLint X, GLint Y) // ¸¶¿ì½º ÇÈ¼¿°ªÀ» glÁÂÇ¥°è·Î º¯È
 	MouseY = -(GLfloat)(Y - (GLfloat)Height / 2.0) * (GLfloat)(1.0 / (GLfloat)(Height / 2.0)) * 2;
 }
 
-void PassiveMouseMotion(int mX, int mY) // ¸¶¿ì½ºÅ¬¸¯ÀÌ ¾øÀ»¶§ ¸¶¿ì½º À§Ä¡°ªÀ» º¯È¯ÇØÁÜ
+void PassiveMouseMotion(int mX, int mY) // ½Ç½Ã°£À¸·Î ¸¶¿ì½ºÁÂÇ¥¸¦ º¯È¯
 {
 	convertDeviceXYOpenGLXY(mX, mY);
 }
 
-void hammer()
+void hammer() // ¸¶¿ì½º ¾ÆÀÌÄÜ ÇÔ¼ö
 {
 	glPushMatrix();//¸ÁÄ¡
 	glTranslatef(MouseX, MouseY, 0.0);
@@ -65,7 +65,7 @@ void hammer()
 		glRotatef(90.0, 0.0, 0.0, 1.0); // ¸¶¿ì½º°¡ Å¬¸¯µÈ°æ¿ì 90µµ È¸Àü
 	}
 	else {
-		glRotatef(45.0, 0.0, 0.0, 1.0); // ¸¶¿ì½º Å¬¸¯ÀÌ ¾ÈµÈ°æ¿ì 45µµ È¸Àü
+		glRotatef(45.0, 0.0, 0.0, 1.0); // ¸¶¿ì½ºÀÔ·Â°ªÀÌ ¾øÀ» ¶§´Â 45µµ È¸Àü
 	}
 	glColor3f(0.0, 0.0, 0.0);
 	glScalef(1.0, 2.5, 1.0);
@@ -82,29 +82,29 @@ void hammer()
 	glutPostRedisplay();
 }
 
-void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
+void DrawSquare(bool is_Diglett, GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) // °ÔÀÓÆÇÀÇ ºí·Ï 1°³¸¦ »ý¼ºÇÏ´Â ÇÔ¼ö
 {
 	glColor4f(1.0, 1.0, 1.0, 0.0);
 	if (is_Diglett)
 	{
-		glBindTexture(GL_TEXTURE_2D, MyTextureObject[1]);
+		glBindTexture(GL_TEXTURE_2D, MyTextureObject[1]);						// µÎ´õÁö°¡ ÀÖ´Â ºí·Ï
 	}
 	else
 	{
-		glBindTexture(GL_TEXTURE_2D, MyTextureObject[0]);
+		glBindTexture(GL_TEXTURE_2D, MyTextureObject[0]);						// µÎ´õÁö°¡ ¾ø´Â ºí·Ï
 	}
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y2, -1.0f);			//ÁÂÃø ÇÏ´Ü
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(x2, y2, -1.0f);			//¿ìÃø ÇÏ´Ü
 	glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y1, -1.0f);			//¿ìÃø »ó´Ü
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x1, y1, -1.0f);	//ÁÂÃø »ó´Ü
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x1, y1, -1.0f);			//ÁÂÃø »ó´Ü
 	glEnd();
 }
 
 void DrawGameField()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	for (int x = 0; x < 3; x++)
+	for (int x = 0; x < 3; x++)										// ÀüÃ¼ °ÔÀÓÆÇÀ» ÀÛ¼ºÇÑ´Ù
 	{
 		for (int y = 0; y < 3; y++)
 		{
@@ -124,7 +124,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 		is_Mouse_Click = true;
 		convertDeviceXYOpenGLXY(mX, mY);
 
-		if (MouseX < (StartX + FeildSize)) //¹üÀ§ ¾ÈÀÎÁö È®ÀÎ
+		if (MouseX < (StartX + FeildSize)) //¸¶¿ì½º xÃà ¹üÀ§ È®ÀÎ
 		{
 			if (MouseX >= StartX) // 1ÇàÀÎ °æ¿ì
 			{
@@ -142,7 +142,7 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 			}
 		}
 
-		if (MouseY > (StartY - FeildSize)) //¹üÀ§ ¾ÈÀÎÁö È®ÀÎ
+		if (MouseY > (StartY - FeildSize)) //¸¶¿ì½º yÃà ¹üÀ§ È®ÀÎ
 		{
 			if (MouseY <= StartY) // 1¿­
 			{
@@ -159,6 +159,8 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 				}
 			}
 		}
+		// ¸¶¿ì½ºÀÇ ÀÔ·Â°ªÀÌ ¹üÀ§¸¦ ¹þ¾î³­ °æ¿ì NumpadX = -100, NumpadY = -1ÀÌ µÈ´Ù.
+		// ¸¶¿ì½ºÀÇ ÀÔ·Â°ªÀÌ ¹üÀ§ ¾ÈÀÎ °æ¿ì NumpadX, Y¸ðµÎ 1~3»çÀÌÀÇ ¼ýÀÚ°ªÀ» °¡Áö°Ô µÈ´Ù.
 
 		if ((MouseX >= 2.0 && MouseX <= 2.5) && (MouseY >= 0.7 && MouseY <= 0.8)) //start¹öÆ°À» ´©¸¥ °æ¿ì
 		{
@@ -169,12 +171,11 @@ void is_Catch_Mole(GLint Button, GLint State, GLint mX, GLint mY)
 	{
 		is_Mouse_Click = false;
 	}
-	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // µÎ´õÁö¸¦ Å¬¸¯Çß°í Á¡¼ö ÀÔ·ÂÀÌ °¡´ÉÇÑ »óÅÂÀÏ¶§
+	if ((MolePosition == (3 * NumpadY + NumpadX + 1)) && can_add_score) // µÎ´õÁö°¡ À§Ä¡ÇÑ ÇÊµå¸¦ ÀÔ·ÂÇß°í Á¡¼ö ÀÔ·ÂÀÌ °¡´ÉÇÑ »óÅÂÀÏ¶§
 	{
 		Score += 1;
-		can_add_score = false; // Á¡¼ö¸¦ ÀÔ·ÂÇßÀ¸¹Ç·Î Á¡¼ö ÀÔ·Â ºñÈ°¼ºÈ­
+		can_add_score = false; // Á¡¼ö¸¦ Ãß°¡ÇßÀ¸¹Ç·Î Á¡¼ö ÀÔ·Â ºñÈ°¼ºÈ­
 		PlaySound("MP_Blop.wav", 0, SND_FILENAME | SND_ASYNC); // µÎ´õÁö¸¦ Å¬¸¯ÇØ¼­ Àâ¾ÒÀ» ½Ã ¼Ò¸® Àç»ý
-		//std::cout << Score << std::endl;
 	}
 }
 
@@ -183,12 +184,12 @@ void GameStart(int Respawn_delay)
 	if (is_GameStart == false) // °ÔÀÓ ½ÃÀÛ Áßº¹ ½ÇÇà ¹æÁö
 	{
 		is_GameStart = true; // °ÔÀÓÀÌ ½ÇÇàµÇ¾úÀ¸¹Ç·Î true·Î ¹Ù²Þ
-		Score = 0;
-		GameTime = 0;
-		Respawn(Respawn_delay);
+		Score = 0;			// Á¡¼ö ÃÊ±âÈ­
+		GameTime = 0;		// ÇÃ·¹ÀÌ Å¸ÀÓ ÃÊ±âÈ­
+		Respawn(Respawn_delay); // µÎ´õÁö »ý¼º
 
-		LoadGLTextures("Emptyhole.bmp", 0);
-		LoadGLTextures("Molehole.bmp", 1);
+		LoadGLTextures("Emptyhole.bmp", 0); // ÅØ½ºÃÄ ÆÄÀÏ ºÒ·¯¿À±â
+		LoadGLTextures("Molehole.bmp", 1);  // ÅØ½ºÃÄ ÆÄÀÏ ºÒ·¯¿À±â
 		glEnable(GL_TEXTURE_2D);
 		glShadeModel(GL_SMOOTH);
 		glClearDepth(1.0);
@@ -214,9 +215,8 @@ void Respawn(int time)
 	}
 	else// °ÔÀÓ ³¡³­ °æ¿ì
 	{
-		is_GameStart = false;
-		MolePosition = -1;
-		//GameTime = 0;
+		is_GameStart = false; // °ÔÀÓÀÌ ³¡³µÀ½À» ¾Ë¸²
+		MolePosition = -1;	  // µÎ´õÁö À§Ä¡ ÃÊ±âÈ­
 	}
 	glutPostRedisplay();
 }

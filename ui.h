@@ -6,16 +6,16 @@
 #include "util.h"
 #include "GamePlay.h"
 
-enum class MainMenu {
+enum class MainMenu { // 우클릭 메인 메뉴의 entry번호
 	START = 1,
-	GameSpeed,
-	Exit
+	GameSpeed,  //2
+	Exit		//3
 };
 
-enum class GameLevel {
-	Level_1 = 1,
-	Level_2,
-	Level_3
+enum class GameLevel { // 게임 레벨 단계 
+	Level_1 = 1,	//1
+	Level_2,		//2
+	Level_3			//3
 };
 
 

@@ -28,7 +28,7 @@ void PassiveMouseMotion(int x, int y); // 마우스에 망치 달기
 void is_Catch_Mole(GLint Button, GLint State, GLint MouseX, GLint MouseY); // 마우스 클릭이벤트 발생시 망치를 기울이고 두더지를 잡았는지 확인
 void Respawn(int time); // 두더지 재생성
 
-void GameStart(int Respawn_delay);
+void GameStart(int Respawn_delay); // 게임 시작
 
 // 마우스 커서
 void hammer(); // 망치 오브젝트
