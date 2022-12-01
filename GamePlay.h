@@ -16,8 +16,8 @@ extern int Respawn_delay; // 두더지 생성 시간 조절
 static bool is_GameStart = false; // 게임상태 표시
 static GLfloat MouseX, MouseY; //마우스 위치 - gl좌표계로 변환됨
 
-static const GLfloat FeildSize = 4.0; // 게임판 크기
-static const GLfloat Distance = FeildSize / 3.0; // 게임판 격자 간격
+static const GLfloat FeildSize = 4.0f; // 게임판 크기
+static const GLfloat Distance = FeildSize / 3.0f; // 게임판 격자 간격
 static const GLfloat StartX = -3.5; // 게임판을 그릴 시작위치 (왼쪽 위)
 static const GLfloat StartY = 2.0; // 게임판을 그릴 시작위치 (왼쪽 위)
 static bool can_add_score = true;	// 점수 중복 입력방지

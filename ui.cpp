@@ -11,11 +11,11 @@ void PrintNum(float x, float y, GLint Num, std::string AddText, int length) // �
 void UI(float x, float y, GLint Score, GLint GameTime) //전체 UI
 {
 	glColor3f(1.0f, 0.0f, 0.0f);										//START 글자의 색상 - 빨간색
-	glBitmapText(x, y + 1.2, 0.0, "START");								// START 글자 표시
+	glBitmapText(x, y + 1.2f, 0.0f, "START");								// START 글자 표시
 
-	PrintNum(x, y + 0.8, Level, "Level : ", 0);							//게임 레벨 표시
+	PrintNum(x, y + 0.8f, Level, "Level : ", 0);							//게임 레벨 표시
 
-	PrintNum(x, y + 0.4, (60000 - GameTime) / 1000, "Time Left: ", 0);  // 남은 시간 표시
+	PrintNum(x, y + 0.4f, (60000 - GameTime) / 1000, "Time Left: ", 0);  // 남은 시간 표시
 
 	PrintNum(x, y, Score, "Score: ", 5);								//점수 표시
 }
